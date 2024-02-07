@@ -1,7 +1,7 @@
 {
-  "hash": "73a56b929220e0c073c8099feffc8cc2",
+  "hash": "a96ef3a29c5e0a06a9806b3b8f21c570",
   "result": {
-    "markdown": "---\ntitle: \"Post With Code\"\nauthor: \"Harlow Malloc\"\ndate: \"2024-01-31\"\ncategories: [news, code, analysis]\nimage: \"image.jpg\"\n---\n\n\nThis is a post with executable code.\n\n\n::: {.cell}\n\n```{.r .cell-code}\n1 + 1\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n[1] 2\n```\n:::\n:::\n",
+    "markdown": "---\ntitle: \"Post With Code\"\nauthor: \"Denali Stevens\"\ndate: \"2024-01-31\"\ncategories: [news, code, analysis]\nimage: \"image.jpg\"\n---\n\n\nThis is a post with executable code.\n\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(praise)\npraise()\n```\n\n::: {.cell-output .cell-output-stdout}\n```\n[1] \"You are epic!\"\n```\n:::\n:::\n\nMy Code isn't changing ",
     "supporting": [],
     "filters": [
       "rmarkdown/pagebreak.lua"
