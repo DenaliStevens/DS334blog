@@ -5,5 +5,17 @@ date: "2024-02-9"
 image: "Kent.jpeg"
 ---
 
-My first blog post is in collaboration with Tess Downing and we are exploring the data set "Roy Kent F**k count". 
+My first blog post is in collaboration with Tess Downing and we are exploring the data set "Roy Kent F**k count".
+
+```{r}
+#| echo: false
+#| output: false
+#| warning: false
+library(tidyverse)
+tuesdata <- tidytuesdayR::tt_load('2023-09-26')
+richmondway <- tuesdata$richmondway
+```
+![](lasso.jpg){height = 50}
+
+We got this data set from the tidytuesday repository on github and it consists of F bombs dropped by the character Roy Kent in the show Ted Lasso. 
 

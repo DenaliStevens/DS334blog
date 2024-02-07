@@ -25,7 +25,7 @@
     "href": "posts/Post-1/index.html",
     "title": "Blog Post 1",
     "section": "",
-    "text": "My first blog post is in collaboration with Tess Downing and we are exploring the data set “Roy Kent F**k count”."
+    "text": "My first blog post is in collaboration with Tess Downing and we are exploring the data set “Roy Kent F**k count”.\n{height = 50}\nWe got this data set from the tidytuesday repository on github and it consists of F bombs dropped by the character Roy Kent in the show Ted Lasso."
   },
   {
     "objectID": "posts/test/index.html",
