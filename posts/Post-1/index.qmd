@@ -2,6 +2,7 @@
 title: "Blog Post 1"
 author: "Denali Stevens"
 date: "2024-02-9"
+image: "Roy Kent.jpeg"
 ---
 
 My first blog post is in collaboration with Tess Downing and we are exploring the data set "Roy Kent F**k count". 
