@@ -15,7 +15,27 @@ library(tidyverse)
 tuesdata <- tidytuesdayR::tt_load('2023-09-26')
 richmondway <- tuesdata$richmondway
 ```
-![](lasso.jpg){height = 50}
+![](lasso.jpg){width=4in}
+Introduction
 
-We got this data set from the tidytuesday repository on github and it consists of F bombs dropped by the character Roy Kent in the show Ted Lasso. 
+In this blog post, we will be working with the richmondway dataset. This dataset is an overview of the number of times Roy Kent from _Ted Lasso_ says the work f*uck. This data was found in tidytuesdayR from GitHub. It was collected and created as an R package by Deepsha Menghani (https://github.com/rfordatascience/tidytuesday/blob/master/data/2023/2023-09-26/readme.md). 
+
+Ted Lasso is a comedy in which an Amerian Football coach is hired to lead an English soccer team. One of the characters, Roy Kent has a love for that four lettered F profanity. 
+
+There are 34 observations in this dataset. The variables we are most interested in looking at are:
+
+**F_count_RK** , double	Roy Kent's F-ck count in that season and episode
+
+**cum_rk_season** , Roy Kent's cumulative F-ck count within that season
+
+**cum_rk_overall**, Roy Kent's cumulative F-ck count across all episodes and seasons until that episode
+
+**F_score**, Roy Kent's F-count divided by the total F-count in the episode
+
+**F_perc**, 	F-score as percentage
+
+**Dating_flag**, Flag of yes or no for whether during the episode Roy Kent was dating the characted Keeley
+
+**Coaching_flag**, Flag of yes or no for whether during the episode Roy Kent was coaching the team
+
 
