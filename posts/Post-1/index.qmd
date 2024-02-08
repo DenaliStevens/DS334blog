@@ -14,9 +14,14 @@ My first blog post is in collaboration with Tess Downing and we are exploring th
 library(tidyverse)
 tuesdata <- tidytuesdayR::tt_load('2023-09-26')
 richmondway <- tuesdata$richmondway
+theme_set(theme_minimal())
 ```
 ![](lasso.jpg){width=4in}
-Introduction
+
+
+
+
+## Introduction
 
 In this blog post, we will be working with the richmondway dataset. This dataset is an overview of the number of times Roy Kent from _Ted Lasso_ says the work f*uck. This data was found in tidytuesdayR from GitHub. It was collected and created as an R package by Deepsha Menghani (https://github.com/rfordatascience/tidytuesday/blob/master/data/2023/2023-09-26/readme.md). 
 
@@ -37,5 +42,46 @@ There are 34 observations in this dataset. The variables we are most interested 
 **Dating_flag**, Flag of yes or no for whether during the episode Roy Kent was dating the characted Keeley
 
 **Coaching_flag**, Flag of yes or no for whether during the episode Roy Kent was coaching the team
+
+```{r}
+# Clean data to only keep what we're interested in
+RoyKent_1 <- richmondway |> select(Season, Episode, Season_Episode, F_count_RK, Imdb_rating) 
+
+```
+
+
+### 1.) Plot to display the relationship between f*ck count and IMDB rating per episode, faceted by season
+```{r}
+ggplot(data = RoyKent_1, aes(x = Episode, y = F_count_RK)) +
+  geom_segment(aes(x = Episode, xend = Episode, y = 0, yend = F_count_RK)) +
+  geom_point() +
+  facet_wrap(~Season)
+
+
+ggplot(data = richmondway, aes(x = F_count_RK, y = Imdb_rating)) +
+  geom_segment(aes(x = F_count_RK, xend = F_count_RK, y = 0, yend = Imdb_rating)) +
+  geom_point() +
+  facet_wrap(~Season) +
+  coord_flip()
+
+richmond_grouped <- richmondway |> group_by(Season) |> summarise(averg_FK = mean(F_count_RK), averg_score = mean(Imdb_rating))
+
+ggplot(data = richmondway, aes(x= F_count_RK, y = Imdb_rating )) +
+  geom_boxplot() +
+  facet_wrap(~Season)
+
+ggplot(data = richmondway, aes(x= Imdb_rating, y = F_count_RK )) +
+  geom_boxplot() +
+  facet_wrap(~Season)
+
+ggplot( data = richmondway, aes(x = Imdb_rating, y = F_count_RK)) +
+  geom_point() +
+  facet_wrap(~Season)
+
+ggplot( data = richmondway, aes(x = F_count_RK, y = Imdb_rating)) +
+  geom_point() +
+  facet_wrap(~Season) 
+```
+
 
 
