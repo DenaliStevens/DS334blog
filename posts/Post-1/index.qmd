@@ -137,4 +137,4 @@ I think with a little more time and more experience we could have found a way to
 
 ## Connection to Class
 
-The plot with the most connection to this class is the last one showing the average IMdb rating from each season. The other graphs show connection as well because we would not have been able to clean them up as well without what we've learned so for from this class, but the last graph does have the most elevated level of creation. 
+The plot with the most connection to this class is the last one showing the average IMdb rating from each season. The error plot definitely does a great job at showing the spread and distribution of the data. The other graphs show connection as well because we would not have been able to clean them up as well without what we've learned so for from this class, but the last graph does have the most elevated level of creation. 
