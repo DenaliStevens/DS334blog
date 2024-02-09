@@ -129,12 +129,12 @@ ggplot(data = seasons_rating, aes(x = Season, y = mean_rating)) +
         title = element_text(colour = "#0176F2"))
 ```
 
-This is a graph showing the mean Imdb ratings and their variability of each season of Ted Lasso. I believe there is some correspondence between the rating of the season, with the amount of times Roy Kent says the word f-ck. The word is said in Season 1, 2, and 3, 56 times, 106 times, and 138 times, respectively. This could go to say, ratings go decrease as the number of f\*cks increase
+This is a graph showing the mean Imdb ratings and their variability of each season of Ted Lasso. I believe there is some correspondence between the rating of the season, with the amount of times Roy Kent says the word f-ck. The word is said in Season 1, 2, and 3, 56 times, 106 times, and 138 times, respectively. This could go to say, ratings decrease as the number of f\*cks increase
 
-# Conclusion
+# Conclusion and Wrap-Up
 
-flaws future directions
+I think with a little more time and more experience we could have found a way to directly compare IMDB ratings with the f\*cks count in a more comprehensible way than the scatter plot. It is a good plot, but it could definitely be clearer and draw a better connection. I also think we could have found a way to include more of the variables from the data set and investigate other connections or trends, like if Roy switching from playing to coaching had any effect on the F count or imdb rating. 
 
 ## Connection to Class
 
-About a week ago , I probably would have made a bar plot for each season to compare their ratings. However, bar plots cannot show us variability and where our average lies within the data. Error bars are a great way to compare the average rating of each season because we can see that the mean rating does not represent each episode in that season. We can see the spread of the ratings.
+The plot with the most connection to this class is the last one showing the average IMdb rating from each season. The other graphs show connection as well because we would not have been able to clean them up as well without what we've learned so for from this class, but the last graph does have the most elevated level of creation. 
