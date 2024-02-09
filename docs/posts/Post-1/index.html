@@ -145,20 +145,52 @@ ul.task-list li input[type="checkbox"] {
 
 <p>My first blog post is in collaboration with Tess Downing and we are exploring the data set “Roy Kent F**k count”.</p>
 <p><img src="lasso.jpg" class="img-fluid" style="width:4in"></p>
-<section id="introduction" class="level2">
-<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>In this blog post, we will be working with the richmondway dataset. This dataset is an overview of the number of times Roy Kent from <em>Ted Lasso</em> says the work f*uck. This data was found in tidytuesdayR from GitHub. It was collected and created as an R package by Deepsha Menghani (https://github.com/rfordatascience/tidytuesday/blob/master/data/2023/2023-09-26/readme.md).</p>
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>In this blog post, we will be working with the richmondway dataset.This dataset is an overview of the number of times Roy Kent from <em>Ted Lasso</em> says the work f*uck. This data was found in tidytuesdayR from GitHub. It was collected and created as an R package by Deepsha Menghani (https://github.com/rfordatascience/tidytuesday/blob/master/data/2023/2023-09-26/readme.md). The colors in used in the graphs come from a Ted Lasso hexcolors pallette made by Vanessa Gutierrez (https://color.adobe.com/Ted-Lasso-color-theme-18178903/).</p>
 <p>Ted Lasso is a comedy in which an Amerian Football coach is hired to lead an English soccer team. One of the characters, Roy Kent has a love for that four lettered F profanity.</p>
 <p>There are 34 observations in this dataset. The variables we are most interested in looking at are:</p>
-<p><strong>F_count_RK</strong> , double Roy Kent’s F-ck count in that season and episode</p>
-<p><strong>cum_rk_season</strong> , Roy Kent’s cumulative F-ck count within that season</p>
-<p><strong>cum_rk_overall</strong>, Roy Kent’s cumulative F-ck count across all episodes and seasons until that episode</p>
-<p><strong>F_score</strong>, Roy Kent’s F-count divided by the total F-count in the episode</p>
-<p><strong>F_perc</strong>, F-score as percentage</p>
-<p><strong>Dating_flag</strong>, Flag of yes or no for whether during the episode Roy Kent was dating the characted Keeley</p>
-<p><strong>Coaching_flag</strong>, Flag of yes or no for whether during the episode Roy Kent was coaching the team</p>
+<p><strong>Season</strong>, The season 1, 2 or 3 associated with the count</p>
+<p><strong>Episode</strong>, The episode within the season associated with the count</p>
+<p><strong>Season_Episode</strong>, Season and episode as a combined variable</p>
+<p><strong>F_count_RK</strong>, Roy Kent’s F-ck count in that season and episode</p>
+<p><strong>cum_rk_season</strong>, Roy Kent’s cumulative F-ck count within that season</p>
+<p><strong>Imdb_rating</strong>, Imdb rating of that episode</p>
+<p>We will the explore how the f*ck count and ratings interact. While we explore this dataset, it is important to know that we will be breaking down each visualization by season to compare how views felt about each phase of the show.</p>
+</section>
+<section id="primary-visualizations" class="level1">
+<h1>Primary Visualizations</h1>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid" width="672"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-2-2.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Plot 1 is showing how many times Roy Kent says f*ck in every episode of <em>Ted Lasso</em>. Plot 2 is show the Imdb rating for every episode of the show. In season 1, episode 9 has the highest count. Season 2 is a tie between episodes 5 and 12. and episode 4 in Season 3 takes the first place prize out of its peers. In terms of ratings the episodes that have the highest ratings are Season 1 Episode 10, Season 2 Episode 8, and Season 3 Episode 12. When looking at these plots side-by-side, they do not follow a similar pattern. This could show that the amount of profanity in an episode does not have an effect on its rating.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-3-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Plot 3 is directly comparing Imdb rating to Roy Kents f*count per episode. This plot shows very different relationships between rating and f*count. In season 1, the episodes with a lower f count, were rated higher. Season 2 was all over the place. Season 3 found its stride with episodes that had about 12 f*cks rating the highest. This is further proving there probably is not a relationship between rating and the f bomb.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="index_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>This is a graph showing the mean Imdb ratings and their variability of each season of Ted Lasso. I believe there is some correspondence between the rating of the season, with the amount of times Roy Kent says the word f-ck. The word is said in Season 1, 2, and 3, 56 times, 106 times, and 138 times, respectively. This could go to say, ratings go decrease as the number of f*cks increase</p>
+</section>
+<section id="conclusion" class="level1">
+<h1>Conclusion</h1>
+<p>flaws future directions</p>
+<section id="connection-to-class" class="level2">
+<h2 class="anchored" data-anchor-id="connection-to-class">Connection to Class</h2>
+<p>About a week ago , I probably would have made a bar plot for each season to compare their ratings. However, bar plots cannot show us variability and where our average lies within the data. Error bars are a great way to compare the average rating of each season because we can see that the mean rating does not represent each episode in that season. We can see the spread of the ratings.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
