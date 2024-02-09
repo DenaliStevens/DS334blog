@@ -28,11 +28,11 @@
     "text": "My first blog post is in collaboration with Tess Downing and we are exploring the data set “Roy Kent F**k count”."
   },
   {
-    "objectID": "posts/Post-1/index.html#introduction",
-    "href": "posts/Post-1/index.html#introduction",
+    "objectID": "posts/Post-1/index.html#connection-to-class",
+    "href": "posts/Post-1/index.html#connection-to-class",
     "title": "Blog Post 1",
-    "section": "Introduction",
-    "text": "Introduction\nIn this blog post, we will be working with the richmondway dataset. This dataset is an overview of the number of times Roy Kent from Ted Lasso says the work f*uck. This data was found in tidytuesdayR from GitHub. It was collected and created as an R package by Deepsha Menghani (https://github.com/rfordatascience/tidytuesday/blob/master/data/2023/2023-09-26/readme.md).\nTed Lasso is a comedy in which an Amerian Football coach is hired to lead an English soccer team. One of the characters, Roy Kent has a love for that four lettered F profanity.\nThere are 34 observations in this dataset. The variables we are most interested in looking at are:\nF_count_RK , double Roy Kent’s F-ck count in that season and episode\ncum_rk_season , Roy Kent’s cumulative F-ck count within that season\ncum_rk_overall, Roy Kent’s cumulative F-ck count across all episodes and seasons until that episode\nF_score, Roy Kent’s F-count divided by the total F-count in the episode\nF_perc, F-score as percentage\nDating_flag, Flag of yes or no for whether during the episode Roy Kent was dating the characted Keeley\nCoaching_flag, Flag of yes or no for whether during the episode Roy Kent was coaching the team\n\n# Clean data to only keep what we're interested in\nRoyKent_1 &lt;- richmondway |&gt; select(Season, Episode, Season_Episode, F_count_RK, Imdb_rating) \n\n\n1.) Plot to display the relationship between f*ck count and IMDB rating per episode, faceted by season\n\nggplot(data = RoyKent_1, aes(x = Episode, y = F_count_RK)) +\n  geom_segment(aes(x = Episode, xend = Episode, y = 0, yend = F_count_RK)) +\n  geom_point() +\n  facet_wrap(~Season)\n\n\n\nggplot(data = richmondway, aes(x = F_count_RK, y = Imdb_rating)) +\n  geom_segment(aes(x = F_count_RK, xend = F_count_RK, y = 0, yend = Imdb_rating)) +\n  geom_point() +\n  facet_wrap(~Season) +\n  coord_flip()\n\n\n\nrichmond_grouped &lt;- richmondway |&gt; group_by(Season) |&gt; summarise(averg_FK = mean(F_count_RK), averg_score = mean(Imdb_rating))\n\nggplot(data = richmondway, aes(x= F_count_RK, y = Imdb_rating )) +\n  geom_boxplot() +\n  facet_wrap(~Season)\n\nWarning: Continuous x aesthetic\nℹ did you forget `aes(group = ...)`?\n\n\n\n\nggplot(data = richmondway, aes(x= Imdb_rating, y = F_count_RK )) +\n  geom_boxplot() +\n  facet_wrap(~Season)\n\nWarning: Continuous x aesthetic\nℹ did you forget `aes(group = ...)`?\n\n\n\n\nggplot( data = richmondway, aes(x = Imdb_rating, y = F_count_RK)) +\n  geom_point() +\n  facet_wrap(~Season)\n\n\n\nggplot( data = richmondway, aes(x = F_count_RK, y = Imdb_rating)) +\n  geom_point() +\n  facet_wrap(~Season)"
+    "section": "Connection to Class",
+    "text": "Connection to Class\nAbout a week ago , I probably would have made a bar plot for each season to compare their ratings. However, bar plots cannot show us variability and where our average lies within the data. Error bars are a great way to compare the average rating of each season because we can see that the mean rating does not represent each episode in that season. We can see the spread of the ratings."
   },
   {
     "objectID": "posts/test/index.html",
@@ -47,12 +47,5 @@
     "title": "DS334blog",
     "section": "",
     "text": "Blog Post 1\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 9, 2024\n\n\nDenali Stevens\n\n\n\n\n\n\n  \n\n\n\n\nPost With Code\n\n\n\n\n\n\n\nnews\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\n\n\nJan 31, 2024\n\n\nDenali Stevens\n\n\n\n\n\n\n  \n\n\n\n\ntest page\n\n\n\n\n\n\n\nnews\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\n\n\nJan 31, 2024\n\n\nDenali Stevens\n\n\n\n\n\n\n  \n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\n\n\nJan 28, 2024\n\n\nDenali Stevens\n\n\n\n\n\n\nNo matching items"
-  },
-  {
-    "objectID": "posts/Post-1/index.html#connection-to-class",
-    "href": "posts/Post-1/index.html#connection-to-class",
-    "title": "Blog Post 1",
-    "section": "Connection to Class",
-    "text": "Connection to Class\nAbout a week ago , I probably would have made a bar plot for each season to compare their ratings. However, bar plots cannot show us variability and where our average lies within the data. Error bars are a great way to compare the average rating of each season because we can see that the mean rating does not represent each episode in that season. We can see the spread of the ratings."
   }
 ]
