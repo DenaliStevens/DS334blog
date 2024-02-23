@@ -7,18 +7,18 @@
     "text": "About this blog"
   },
   {
-    "objectID": "posts/welcome/index.html",
-    "href": "posts/welcome/index.html",
-    "title": "Welcome To My Blog",
+    "objectID": "posts/Post-2/index.html",
+    "href": "posts/Post-2/index.html",
+    "title": "Blog Post 2",
     "section": "",
-    "text": "This is the first post in a Quarto blog. Welcome!\n\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts. What if I add another image?"
+    "text": "Introduction\nIn this blog post I’ll be exploring a data set about tornadoes in the United States from 1950 to 2022. This data comes from the data set Tornados. I found the data set on the github repo tidytuesday, and the information posted there came from NOAA’s National Weather Service Storm Prediction Center Severe Weather Maps, Graphics, and Data Page.\nFor this blog post the variables I’m interested in are\nom, the id number for each tornado\nyr, the year it occurred\nmo, the month it occurred\nst, the state(s) it affected\nmag, the magnitude on the F scale\nloss, the estimated property loss (in dollars)\nns, the number of states it affected\nThe first thing I want to investigate how many tornadoes each state recorded from 1950 to 2022, for this I will create a map of the US displaying tornado count in each state. I also want to investigate the interaction between magnitude and the number of states that were effected, along with magnitude and loss.\n\n## Read in data \n\nlibrary(tidyverse)\n\ntuesdata &lt;- tidytuesdayR::tt_load('2023-05-16')\ntuesdata &lt;- tidytuesdayR::tt_load(2023, week = 20)\n\ntornados &lt;- tuesdata$tornados\ntornados_smaller &lt;- tornados |&gt; select(om, yr, mo, st, mag, loss, ns)\n\n## map of US and tornado\nlibrary(maps)\nlibrary(tidyverse)\nstate_df &lt;- ggplot2::map_data(\"state\")\nstate.abb\nstate.name\n\nabb_name &lt;- bind_cols(state.abb, state.name) |&gt; rename(abb = `...1`,\n                                                       state = `...2`) |&gt;\n  mutate(state = str_to_lower(state)) \n\nlibrary(ggrepel)\n\n\nfull_state_df &lt;- state_df &lt;- left_join(state_df, abb_name, by = c(\"region\" = \"state\"))\n\ntornados_smaller &lt;- tornados_smaller |&gt; group_by(st) |&gt; summarise(count = n())\ntornado_state &lt;- left_join(full_state_df, tornados_smaller, by = c(\"abb\" = \"st\"))\n\nggplot(data = tornado_state, aes(x = long, y = lat, group = group)) +\n  geom_polygon(colour = \"black\", aes(fill = count)) +\n  coord_map(projection = \"albers\", lat0 = 39, lat1 = 45) +\n  theme_void() +\n    scale_fill_distiller(\n    type = \"seq\",\n    direction = 1) +\n  labs(title = \"Count of Tornadoes in United States from 1950-2022\")\n\nIt looks like Texas has had the most tornadoes by far. So lets explore more about tornadoes in Texas over the years, starting with the amount of property loss they’ve caused in the state.\n\ntexas_all &lt;- tornados |&gt; filter(st == \"TX\") |&gt; \n  select(om, yr, mo, mag, loss, ns) \ntexas_loss &lt;- texas_all |&gt; \n  filter(!is.na(loss)) |&gt;\n  group_by(yr) |&gt; summarise(property_loss = sum(loss))\n\nggplot(data = texas_loss, aes(x = yr, y = property_loss)) +\n  geom_point() +\n  theme_minimal() +\n  labs(title = \"Estimated Property Loss Caused by Tornadoes in Texas\")\n\n\n\n\nNow lets look at the connection between the magnitude of a tornado and the estimated property loss is caused, still looking at Texas\n\ntexas_corr &lt;- texas_all |&gt; filter(!is.na(loss)) |&gt; filter(!is.na(mag))\n\nggplot(data = texas_corr, aes(x = mag, y = loss)) +\n  geom_point() +\n  theme_minimal() +\n  labs(title = \"Magnitude and Estimated Loss of Property in Texas Tornadoes\")"
   },
   {
-    "objectID": "posts/post-with-code/index.html",
-    "href": "posts/post-with-code/index.html",
-    "title": "Post With Code",
+    "objectID": "posts/test/index.html",
+    "href": "posts/test/index.html",
+    "title": "test page",
     "section": "",
-    "text": "This is a post with executable code.\n\nlibrary(praise)\npraise()\n\n[1] \"You are epic!\"\n\n\nMy Code isn’t changing"
+    "text": "library(palmerpenguins)\nlibrary(tidyverse)\nggplot(data = penguins, aes(x = bill_length_mm)) +\n  geom_histogram(colour = \"black\", fill = \"white\", bins = 15) +\n  facet_wrap(~ species)"
   },
   {
     "objectID": "posts/Post-1/index.html",
@@ -35,17 +35,24 @@
     "text": "Connection to Class\nThe plot with the most connection to this class is the last one showing the average IMdb rating from each season. The other graphs show connection as well because we would not have been able to clean them up as well without what we’ve learned so for from this class, but the last graph does have the most elevated level of creation."
   },
   {
-    "objectID": "posts/test/index.html",
-    "href": "posts/test/index.html",
-    "title": "test page",
+    "objectID": "posts/post-with-code/index.html",
+    "href": "posts/post-with-code/index.html",
+    "title": "Post With Code",
     "section": "",
-    "text": "library(palmerpenguins)\nlibrary(tidyverse)\nggplot(data = penguins, aes(x = bill_length_mm)) +\n  geom_histogram(colour = \"black\", fill = \"white\", bins = 15) +\n  facet_wrap(~ species)"
+    "text": "This is a post with executable code.\n\nlibrary(praise)\npraise()\n\n[1] \"You are epic!\"\n\n\nMy Code isn’t changing"
+  },
+  {
+    "objectID": "posts/welcome/index.html",
+    "href": "posts/welcome/index.html",
+    "title": "Welcome To My Blog",
+    "section": "",
+    "text": "This is the first post in a Quarto blog. Welcome!\n\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts. What if I add another image?"
   },
   {
     "objectID": "index.html",
     "href": "index.html",
     "title": "DS334blog",
     "section": "",
-    "text": "Blog Post 1\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 9, 2024\n\n\nDenali Stevens\n\n\n\n\n\n\n  \n\n\n\n\nPost With Code\n\n\n\n\n\n\n\nnews\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\n\n\nJan 31, 2024\n\n\nDenali Stevens\n\n\n\n\n\n\n  \n\n\n\n\ntest page\n\n\n\n\n\n\n\nnews\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\n\n\nJan 31, 2024\n\n\nDenali Stevens\n\n\n\n\n\n\n  \n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\n\n\nJan 28, 2024\n\n\nDenali Stevens\n\n\n\n\n\n\nNo matching items"
+    "text": "Blog Post 2\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 23, 2024\n\n\nDenali Stevens\n\n\n\n\n\n\n  \n\n\n\n\nBlog Post 1\n\n\n\n\n\n\n\n\n\n\n\n\nFeb 9, 2024\n\n\nDenali Stevens\n\n\n\n\n\n\n  \n\n\n\n\nPost With Code\n\n\n\n\n\n\n\nnews\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\n\n\nJan 31, 2024\n\n\nDenali Stevens\n\n\n\n\n\n\n  \n\n\n\n\ntest page\n\n\n\n\n\n\n\nnews\n\n\ncode\n\n\nanalysis\n\n\n\n\n\n\n\n\n\n\n\nJan 31, 2024\n\n\nDenali Stevens\n\n\n\n\n\n\n  \n\n\n\n\nWelcome To My Blog\n\n\n\n\n\n\n\nnews\n\n\n\n\n\n\n\n\n\n\n\nJan 28, 2024\n\n\nDenali Stevens\n\n\n\n\n\n\nNo matching items"
   }
 ]

@@ -1,0 +1,105 @@
+---
+title: "Blog Post 2"
+author: "Denali Stevens"
+date: "2024-02-23"
+image: "tornado.jpeg"
+---
+
+# Introduction 
+In this blog post I'll be exploring a data set about tornadoes in the United States from 1950 to 2022. This data comes from the data set Tornados. I found the data set on the [github repo tidytuesday](https://github.com/rfordatascience/tidytuesday/blob/master/data/2023/2023-05-16/readme.md){target="_blank"}, and the information posted there came from NOAA's National Weather Service [Storm Prediction Center Severe Weather Maps, Graphics, and Data Page](https://www.spc.noaa.gov/wcm/#data){target="_blank"}.
+
+For this blog post the variables I'm interested in are 
+
+**om**, the id number for each tornado 
+
+**yr**, the year it occurred
+
+**mo**, the month it occurred
+
+**st**, the state(s) it affected
+
+**mag**, the magnitude on the F scale
+
+**loss**, the estimated property loss (in dollars)
+
+**ns**, the number of states it affected 
+
+The first thing I want to investigate how many tornadoes each state recorded from 1950 to 2022, for this I will create a map of the US displaying tornado count in each state. I also want to investigate the interaction between magnitude and the number of states that were effected, along with magnitude and loss. 
+
+```{r}
+#| output: false 
+#| warning: false
+
+## Read in data 
+
+library(tidyverse)
+
+tuesdata <- tidytuesdayR::tt_load('2023-05-16')
+tuesdata <- tidytuesdayR::tt_load(2023, week = 20)
+
+tornados <- tuesdata$tornados
+tornados_smaller <- tornados |> select(om, yr, mo, st, mag, loss, ns)
+
+## map of US and tornado
+library(maps)
+library(tidyverse)
+state_df <- ggplot2::map_data("state")
+state.abb
+state.name
+
+abb_name <- bind_cols(state.abb, state.name) |> rename(abb = `...1`,
+                                                       state = `...2`) |>
+  mutate(state = str_to_lower(state)) 
+
+library(ggrepel)
+```
+
+ 
+```{r}
+#| warning: false
+#| echo: true
+#| output: false
+
+full_state_df <- state_df <- left_join(state_df, abb_name, by = c("region" = "state"))
+
+tornados_smaller <- tornados_smaller |> group_by(st) |> summarise(count = n())
+tornado_state <- left_join(full_state_df, tornados_smaller, by = c("abb" = "st"))
+
+ggplot(data = tornado_state, aes(x = long, y = lat, group = group)) +
+  geom_polygon(colour = "black", aes(fill = count)) +
+  coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
+  theme_void() +
+    scale_fill_distiller(
+    type = "seq",
+    direction = 1) +
+  labs(title = "Count of Tornadoes in United States from 1950-2022")
+```
+
+It looks like Texas has had the most tornadoes by far. So lets explore more about tornadoes in Texas over the years, starting with the amount of property loss they've caused in the state. 
+
+```{r}
+texas_all <- tornados |> filter(st == "TX") |> 
+  select(om, yr, mo, mag, loss, ns) 
+texas_loss <- texas_all |> 
+  filter(!is.na(loss)) |>
+  group_by(yr) |> summarise(property_loss = sum(loss))
+
+ggplot(data = texas_loss, aes(x = yr, y = property_loss)) +
+  geom_point() +
+  theme_minimal() +
+  labs(title = "Estimated Property Loss Caused by Tornadoes in Texas")
+```
+
+Now lets look at the connection between the magnitude of a tornado and the estimated property loss is caused, still looking at Texas 
+```{r}
+texas_corr <- texas_all |> filter(!is.na(loss)) |> filter(!is.na(mag))
+
+ggplot(data = texas_corr, aes(x = mag, y = loss)) +
+  geom_point() +
+  theme_minimal() +
+  labs(title = "Magnitude and Estimated Loss of Property in Texas Tornadoes")
+```
+
+
+
+
