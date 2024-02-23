@@ -10,11 +10,8 @@ In this blog post I'll be exploring a data set about tornadoes in the United Sta
 
 For this blog post the variables I'm interested in are 
 
-**om**, the id number for each tornado 
 
 **yr**, the year it occurred
-
-**mo**, the month it occurred
 
 **st**, the state(s) it affected
 
@@ -22,9 +19,8 @@ For this blog post the variables I'm interested in are
 
 **loss**, the estimated property loss (in dollars)
 
-**ns**, the number of states it affected 
 
-The first thing I want to investigate how many tornadoes each state recorded from 1950 to 2022, for this I will create a map of the US displaying tornado count in each state. I also want to investigate the interaction between magnitude and the number of states that were effected, along with magnitude and loss. 
+The first thing I want to investigate how many tornadoes each state recorded from 1950 to 2022, for this I will create a map of the US displaying tornado count in each state.
 
 ```{r}
 #| output: false 
@@ -54,16 +50,16 @@ abb_name <- bind_cols(state.abb, state.name) |> rename(abb = `...1`,
 library(ggrepel)
 ```
 
- 
+# Primary Visualizations
+
 ```{r}
 #| warning: false
-#| echo: true
-#| output: false
+#| echo: false
 
 full_state_df <- state_df <- left_join(state_df, abb_name, by = c("region" = "state"))
 
-tornados_smaller <- tornados_smaller |> group_by(st) |> summarise(count = n())
-tornado_state <- left_join(full_state_df, tornados_smaller, by = c("abb" = "st"))
+tornados_sum <- tornados_smaller |> group_by(st) |> summarise(count = n())
+tornado_state <- left_join(full_state_df, tornados_sum, by = c("abb" = "st"))
 
 ggplot(data = tornado_state, aes(x = long, y = lat, group = group)) +
   geom_polygon(colour = "black", aes(fill = count)) +
@@ -75,7 +71,22 @@ ggplot(data = tornado_state, aes(x = long, y = lat, group = group)) +
   labs(title = "Count of Tornadoes in United States from 1950-2022")
 ```
 
-It looks like Texas has had the most tornadoes by far. So lets explore more about tornadoes in Texas over the years, starting with the amount of property loss they've caused in the state. 
+This is a lot of years and information to consider, so let's make another one of more current times. This map will cover from 2000 to 2022
+```{r}
+tornado_2000s <- tornados_smaller |> filter(yr >= 2000) |> group_by(st) |> summarise(count = n())
+tornado_state2 <- left_join(full_state_df, tornado_2000s, by = c("abb" = "st"))
+
+ggplot(data = tornado_state2, aes(x = long, y = lat, group = group)) +
+  geom_polygon(colour = "black", aes(fill = count)) +
+  coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
+  theme_void() +
+    scale_fill_distiller(
+    type = "seq",
+    direction = 1) +
+  labs(title = "Count of Tornadoes in United States from 2000-2022")
+```
+
+In both of these maps, it looks like Texas has had the most tornadoes by far. So lets explore more about tornadoes in Texas over the years, starting with the amount of property loss they've caused in the state. 
 
 ```{r}
 texas_all <- tornados |> filter(st == "TX") |> 
@@ -87,7 +98,7 @@ texas_loss <- texas_all |>
 ggplot(data = texas_loss, aes(x = yr, y = property_loss)) +
   geom_point() +
   theme_minimal() +
-  labs(title = "Estimated Property Loss Caused by Tornadoes in Texas")
+  labs(title = "Estimated Property Loss Caused by Tornadoes in Texas", x = "Year", y = "Property Loss")
 ```
 
 Now lets look at the connection between the magnitude of a tornado and the estimated property loss is caused, still looking at Texas 
@@ -97,8 +108,41 @@ texas_corr <- texas_all |> filter(!is.na(loss)) |> filter(!is.na(mag))
 ggplot(data = texas_corr, aes(x = mag, y = loss)) +
   geom_point() +
   theme_minimal() +
-  labs(title = "Magnitude and Estimated Loss of Property in Texas Tornadoes")
+  labs(title = "Magnitude and Estimated Loss of Property in Texas Tornadoes", x = "Magnitude on F scale", y = "Estimated Property Loss")
 ```
+
+Going back to considering all of the states, lets find the 5 states with the most tornadoes and compare their estimated property loss. 
+```{r}
+top5 <- tornados_smaller |> 
+  filter(!is.na(loss)) |>
+  group_by(st) |> 
+  summarise(total_loss = sum(loss)) |>
+  arrange(desc(total_loss)) |>
+  slice(1:5)
+## this tells me that TX, AL, OK, MO, and IN have collectively the highest amounts of property loss 
+## lets graph it 
+
+top5_graph <- tornados_smaller |> filter(st %in% c("TX", "AL", "OK", "MO", "IN")) |>
+  filter(!is.na(loss))
+
+ggplot(data = top5_graph, aes(x = loss)) +
+  geom_freqpoly(aes(colour = st)) +
+  scale_color_viridis_d()
+## I was trying to make a graph that shows the loss for the top 5 states over the span of years in this set, but really couldn't figure it out. 
+
+ggplot(data = top5_graph, aes(x = st, y = loss)) +
+  geom_boxplot()
+# kinda? 
+
+```
+
+
+# Conclusion and Wrap-Up
+Really wish I could have figured out the last graph, but just ran out of time. I think the maps worked out well after I was able to combine my data set with r's information about states and abbreviations. Also with more time I would have liked to explore more of the variables in the data set and some more interactions, particularly between magnitude and the amount of states effected and the estimated loss. I also want to figure out how to scale the axis with out using scientific notation, it just makes it harder to interpret. 
+
+
+## Connection to Class
+Building maps like the ones I used is completely thanks to this class and I hope to learn more about creating maps, along with other skills. I feel like the last graph I tried to build is possible with what we've learned so far but just couldn't get it.
 
 
 
