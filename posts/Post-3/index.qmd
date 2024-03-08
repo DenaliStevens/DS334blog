@@ -1,12 +1,14 @@
 ---
 title: "Blog Post 3"
 author: "Denali Stevens"
+date: "2024-03-08"
+image: "Collegiate.jpeg"
 ---
 
 
 # Introduction
 
-In this blog post I will be exploring the data set `Collegiate sports` from the github page [tidytuesday] (https://github.com/rfordatascience/tidytuesday/blob/master/data/2022/2022-03-29/readme.md){target="_blank"}. For this post I am interested in exploring the total revenue and expenditure for collegiate sports at a variety of schools. To do this I will use the variables 
+In this blog post I will be exploring the data set `Collegiate sports` from the github page [tidytuesday](https://github.com/rfordatascience/tidytuesday/blob/master/data/2022/2022-03-29/readme.md){target="_blank"}, For this post I am interested in exploring the total revenue and expenditure for collegiate sports at a variety of schools. To do this I will use the variables 
 
 **year**, the year the data represents
 
