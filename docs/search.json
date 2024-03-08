@@ -4,7 +4,7 @@
     "href": "about.html",
     "title": "About",
     "section": "",
-    "text": "About this blog"
+    "text": "This is my blog for DS334!"
   },
   {
     "objectID": "posts/Post-3/index.html",
@@ -21,20 +21,6 @@
     "text": "Connection to Class\nThe fine tuning of these graphs is what I think the class helps with the most, and given these graphs are still very messy the connection to class is not displayed very well. But they are more advanced graphs than I would have been able to do before this class."
   },
   {
-    "objectID": "posts/welcome/index.html",
-    "href": "posts/welcome/index.html",
-    "title": "Welcome To My Blog",
-    "section": "",
-    "text": "This is the first post in a Quarto blog. Welcome!\n\nSince this post doesn’t specify an explicit image, the first image in the post will be used in the listing page of posts. What if I add another image?"
-  },
-  {
-    "objectID": "posts/post-with-code/index.html",
-    "href": "posts/post-with-code/index.html",
-    "title": "Post With Code",
-    "section": "",
-    "text": "This is a post with executable code.\n\nlibrary(praise)\npraise()\n\n[1] \"You are epic!\"\n\n\nMy Code isn’t changing"
-  },
-  {
     "objectID": "posts/Post-1/index.html",
     "href": "posts/Post-1/index.html",
     "title": "Blog Post 1",
@@ -47,13 +33,6 @@
     "title": "Blog Post 1",
     "section": "Connection to Class",
     "text": "Connection to Class\nThe plot with the most connection to this class is the last one showing the average IMdb rating from each season. The other graphs show connection as well because we would not have been able to clean them up as well without what we’ve learned so for from this class, but the last graph does have the most elevated level of creation."
-  },
-  {
-    "objectID": "posts/test/index.html",
-    "href": "posts/test/index.html",
-    "title": "test page",
-    "section": "",
-    "text": "library(palmerpenguins)\nlibrary(tidyverse)\nggplot(data = penguins, aes(x = bill_length_mm)) +\n  geom_histogram(colour = \"black\", fill = \"white\", bins = 15) +\n  facet_wrap(~ species)"
   },
   {
     "objectID": "posts/Post-2/index.html",
