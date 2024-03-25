@@ -69,6 +69,23 @@ ggplot(data = tornado_state, aes(x = long, y = lat, group = group)) +
     type = "seq",
     direction = 1) +
   labs(title = "Count of Tornadoes in United States from 1950-2022")
+
+library(plotly)
+
+tornado_plot1 <- ggplot(data = tornado_state, aes(x = long, y = lat, group = group,
+                                                  label = region,
+                                                  amount = count)) +
+  geom_polygon(colour = "black", aes(fill = count)) +
+  coord_map(projection = "albers", lat0 = 39, lat1 = 45) +
+  theme_void() +
+    scale_fill_distiller(
+    type = "seq",
+    direction = 1) +
+  labs(title = "Count of Tornadoes in United States from 1950-2022")
+
+ggplotly(tornado_plot1, tooltip = c("label", "amount"))
+
+
 ```
 
 This is a lot of years and information to consider, so let's make another one of more current times. This map will cover from 2000 to 2022
