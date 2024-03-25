@@ -85,7 +85,6 @@ tornado_plot1 <- ggplot(data = tornado_state, aes(x = long, y = lat, group = gro
 
 ggplotly(tornado_plot1, tooltip = c("label", "amount"))
 
-
 ```
 
 This is a lot of years and information to consider, so let's make another one of more current times. This map will cover from 2000 to 2022
