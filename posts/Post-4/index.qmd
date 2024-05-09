@@ -121,6 +121,8 @@ v_plot <- ggplot(data = np_visitors, aes(x = Year, y = Visitors, group = Name,
 
 In the shiny version this map appears empty and grows as the user selects more parks to plot, reducing the clutter and makes it easier to view the parks they are interested in. It also allows the user to play with the year range a little using a slider bar if they are only interested in a few years instead of a 20 year span. The other visitors graph is built to be more specific and shows a bar graph for a single park, allowing for the selection of any one park but it is set from 1995 to 2016. 
 
+The full versions of each visual can be found on the <https://denali01.shinyapps.io/final_app/>. 
+
 # Questions 
 
 The idea behind building this shiny app was a to provide a very basic education of the national parks in the United States. Through the information provided in the app, one can follow along and answer some given questions to test their knowledge. I came up with just a few quick questions to get the idea across of how it can be used and the knowledge a user can gain. Here are a few of the questions one would be able to answer using the shiny app: 
@@ -157,3 +159,5 @@ The idea behind building this shiny app was a to provide a very basic education 
 
 # In 2001, with 2,758,526
 ```
+
+The full question sheet is available on my github <https://github.com/DenaliStevens/ds334_finalProject>. 
