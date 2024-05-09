@@ -87,7 +87,7 @@ leaflet(nps) |>
                   popup = label_text,
                   data = joined_clean |> 
                     arrange(Visitors_2022) |>
-                    slice(1:10))
+                    slice(1:20))
 
 ```
 
