@@ -85,9 +85,7 @@ leaflet(nps) |>
                                                       bringToFront = TRUE),
                   label = joined_clean$UNIT_NAME,
                   popup = label_text,
-                  data = joined_clean |> 
-                    arrange(Visitors_2022) |>
-                    slice(1:20))
+                  data = joined_clean)
 
 ```
 
