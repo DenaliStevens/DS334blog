@@ -121,7 +121,7 @@ v_plot <- ggplot(data = np_visitors, aes(x = Year, y = Visitors, group = Name,
 
 In the shiny version this map appears empty and grows as the user selects more parks to plot, reducing the clutter and makes it easier to view the parks they are interested in. It also allows the user to play with the year range a little using a slider bar if they are only interested in a few years instead of a 20 year span. The other visitors graph is built to be more specific and shows a bar graph for a single park, allowing for the selection of any one park but it is set from 1995 to 2016. 
 
-The full versions of each visual can be found on the <https://denali01.shinyapps.io/final_app/>. 
+The full versions of each visual can be found here: <https://denali01.shinyapps.io/final_app/>. 
 
 # Questions 
 
